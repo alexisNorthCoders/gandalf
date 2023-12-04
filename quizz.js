@@ -1,4 +1,4 @@
-// Define quiz questions and correct answers
+
 const questions = [
     {
       question: "What is Gandalf's primary color?",
@@ -7,34 +7,61 @@ const questions = [
         b: "White",
         c: "Brown"
       },
-      correctAnswer: "b"
+      correctAnswer: "a"
     },
     {
       question: "What is the name of Galdaf's horse?",
       answers: {
-        a: "Horsy",
-        b: "Legend",
-        c: "RickiToni"
+        a: "Lightfax",
+        b: "Shadowfax",
+        c: "Moonfax"
       },
-      correctAnswer: "c"
+      correctAnswer: "b"
     },
     {
       question: "How old is Gandalf?",
       answers: {
-        a: "Very old",
-        b: "Very youn",
-        c: "178 years"
+        a: "Immortal",
+        b: "Centuries Old",
+        c: "Over 2000 years"
       },
       correctAnswer: "c"
     },
     {
-      question: "What is Gandalf's primary color?",
+      question: "What is the name of Gandalf's sword?",
       answers: {
         a: "Gray",
-        b: "White",
+        b: "Glamdring",
         c: "Brown"
       },
       correctAnswer: "b"
+    },
+    {
+      question: "What is the name of Gandalf's Elvish ring?",
+      answers: {
+        a: "Narya, the Ring of Fire",
+        b: "Nenya, the Ring of Water",
+        c: "Vilya, the Ring of Air"
+      },
+      correctAnswer: "a"
+    },
+    {
+      question: "Which creature does Gandalf confront in the depths of Moria?",
+      answers: {
+        a: "Giant spider",
+        b: "Orc chieftain",
+        c: "The Balrog"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "In the Battle of the Five Armies, what tactical advice does Gandalf give to the allied forces?",
+      answers: {
+        a: "To unite against their common enemy",
+        b: "Retreat to safety",
+        c: "Attack the Elves"
+      },
+      correctAnswer: "a"
     },
   
   ];
@@ -56,18 +83,20 @@ const questions = [
     });
     quizContainer.innerHTML = output;
   }
-  
+ 
  
   function showResults() {
-    const answerContainers = quizContainer.querySelectorAll('input[name^="q"]');
+      
     let score = 0;
   
     questions.forEach((currentQuestion, questionNumber) => {
-      const selectedOption = answerContainers[questionNumber].value;
+      const answerSelector = `input[name="q${questionNumber}"]:checked`;
+      const selectedOption = (quizContainer.querySelector(answerSelector) || {}).value;
+  
       if (selectedOption === currentQuestion.correctAnswer) {
         score++;
-      }
-    });
+      }})
+    
   
     resultContainer.innerHTML = `You scored ${score} out of ${questions.length}`;
   }
@@ -77,4 +106,4 @@ const questions = [
   
 
   submitButton.addEventListener("click", showResults);
-  
+
